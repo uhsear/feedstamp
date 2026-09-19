@@ -1,0 +1,20 @@
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+*.gdb/
+*.sde
+*.lock
+logs/
+*.log
+.env
+*.env
+credentials*
+*token*
+
+# feedstamp state files. They describe a vendor feed: delivered file names,
+# sizes and timestamps. Keep them beside the staging directory, not in git.
+feed.json
+*.feedstamp.json
+feedstamp-state.json
+*.json.tmp
