@@ -948,6 +948,19 @@ def self_test():
     check(_parse(["--self-test"]).self_test is True,
           "--self-test needs nothing else on the command line")
 
+    # ---- a unique prefix of the write flag is refused, not read as --record
+    refused = False
+    err_saved = sys.stderr
+    sys.stderr = io.StringIO()
+    try:
+        _parse(["--rec", "--expect", "polygons.zip"])
+    except SystemExit:
+        refused = True
+    finally:
+        sys.stderr = err_saved
+    check(refused, "a unique prefix of --record is refused, not read as "
+          "--record  <-- pinned defect")
+
     # ---- the io layer and the cli, in a temporary directory
     def run_main(argv):
         """Run the cli, giving back the exit code and everything it printed."""
@@ -1156,6 +1169,7 @@ def _parse(argv):
                     "new, complete one.",
         epilog="The state file is written only by --record, and only after a "
                "verdict of GO.",
+        allow_abbrev=False,
     )
     ap.add_argument("--dir", dest="dir", metavar="PATH",
                     help="staging directory holding the delivery")

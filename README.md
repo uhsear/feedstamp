@@ -55,7 +55,7 @@ PASS  a staging directory that is not there is a usage error  <-- pinned defect
 PASS  check() records a failure, and raises() records both a case that did not raise and a case that raised the wrong thing  <-- pinned defect
 PASS  the self-test leaves no temporary directory behind
 --------------------------------------------------------------------
-150 assertions, 0 failed
+151 assertions, 0 failed
 ```
 
 ## Requirements
@@ -65,7 +65,7 @@ connection and no database. The whole tool is one file, and `--self-test` runs a
 does.
 
 It has been run green on Windows with Python 3.13.2, on ArcGIS Pro's Python 3.13.7, and on Ubuntu
-with Python 3.12.3. All three report the same 150 assertions.
+with Python 3.12.3. The Windows run with Python 3.13 reports 151 assertions. The Python 3.13.7 and 3.12.3 runs were not repeated for this change, so they still report 150.
 
 ```
 git clone https://github.com/uhsear/feedstamp.git
