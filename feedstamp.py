@@ -961,6 +961,19 @@ def self_test():
     check(refused, "a unique prefix of --record is refused, not read as "
           "--record  <-- pinned defect")
 
+    # ---- the shortest unique prefix of the write flag is refused too
+    refused = False
+    err_saved = sys.stderr
+    sys.stderr = io.StringIO()
+    try:
+        _parse(["--r", "--expect", "polygons.zip"])
+    except SystemExit:
+        refused = True
+    finally:
+        sys.stderr = err_saved
+    check(refused, "a one letter prefix of --record is refused, not read as "
+          "--record  <-- pinned defect")
+
     # ---- the io layer and the cli, in a temporary directory
     def run_main(argv):
         """Run the cli, giving back the exit code and everything it printed."""
